@@ -7,6 +7,7 @@ import {
   Typography,
   Button,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
@@ -15,13 +16,27 @@ import Logo from "../assets/crafthaven_logo.png";
 import Image from "next/image";
 import MyTheme from "../theme";
 import { ColorModeContext } from "../context";
+// import { useColorMode } from "../context";
+// import { useColorMode } from "../context";
+// import ToggleColorMode from "../ToggleColorMode";
 
 export default function Navbar() {
+  // let theme = useTheme();
+  // console.log("themee", theme.palette.mode);
+  // const colorMode = useContext(ColorModeContext);
   const appBarRef = useRef<HTMLDivElement>(null);
   const lightTheme = MyTheme("light");
   const darkTheme = MyTheme("dark");
   const { mode, toggleColorMode } = useContext(ColorModeContext);
-  const theme = mode === "light" ? lightTheme : darkTheme;
+  //  theme = mode === "light" ? lightTheme : darkTheme;
+  // const { toggleColorMode, mode } = useColorMode();
+  console.log("nav mode theme", mode);
+
+  const handleColorModeToggle = () => {
+    // console.log("nav mode 2", mode);
+    // console.log("theme",theme.palette.mode)
+    toggleColorMode();
+  };
   return (
     <AppBar
       position="static"
@@ -56,7 +71,7 @@ export default function Navbar() {
         </Box>
         <Box>
           {" "}
-          <IconButton
+          {/* <IconButton
             sx={{
               ml: 1,
               mr: 2,
@@ -70,8 +85,26 @@ export default function Navbar() {
             ) : (
               <Brightness4Icon />
             )}
+          </IconButton> */}
+          {/* <IconButton
+            sx={{ ml: 1 }}
+            onClick={colorMode.toggleColorMode}
+            color="inherit"
+          >
+            {theme.palette.mode === "dark" ? (
+              <Brightness7Icon />
+            ) : (
+              <Brightness4Icon />
+            )}
+          </IconButton> */}
+          <IconButton onClick={() => handleColorModeToggle()} color="inherit">
+            {mode === "light" ? (
+              <Brightness4Icon />
+            ) : (
+              <Brightness7Icon />
+            )}
           </IconButton>
-          <Link style={{ marginRight: "1rem", color:"secondary" }} href="/login">
+          <Link style={{ marginRight: "1rem" }} href="/login">
             Login
           </Link>
           <Link href="/signin">Sign in</Link>

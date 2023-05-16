@@ -1,23 +1,13 @@
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-// import { theme } from './theme';
-import { AppProps } from "next/app";
-import MyTheme from "./theme";
 import { ColorModeProvider } from "./context";
-import { useTheme } from "@emotion/react";
+import { AppProps } from "next/app";
+import "../globals.css";
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-  const theme = MyTheme("dark");
-  if ((Component as any).getLayout) {
-    const getLayout = (Component as any).getLayout;
-    return getLayout(<Component {...pageProps} />);
-  }
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <ColorModeProvider>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ColorModeProvider>
-    </ThemeProvider>
+    <ColorModeProvider>
+      <Component {...pageProps} />
+    </ColorModeProvider>
   );
 }
+
+export default MyApp;

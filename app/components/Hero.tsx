@@ -11,7 +11,7 @@ const Hero = () => {
   const intervals = [2000, 3000, 4500]; // Change this value to adjust the interval (in milliseconds)
 
   return (
-    <div className="text-container">
+    <div >
       <HeroText texts={texts} intervals={intervals} colors={colors} />
     </div>
   );
