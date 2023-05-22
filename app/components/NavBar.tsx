@@ -12,7 +12,8 @@ import {
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Link from "next/link";
-import Logo from "../assets/crafthaven_logo.png";
+// import lightLogo from "../../public/assets/crafthaven_logo.png";
+// import darkLogo from "../../public/assets//caftlogo-dark.png";
 import Image from "next/image";
 import MyTheme from "../theme";
 import { ColorModeContext } from "../context";
@@ -28,7 +29,7 @@ export default function Navbar() {
   const lightTheme = MyTheme("light");
   const darkTheme = MyTheme("dark");
   const { mode, toggleColorMode } = useContext(ColorModeContext);
-  //  theme = mode === "light" ? lightTheme : darkTheme;
+  // const theme = mode === "light" ? darkTheme : lightLogo;
   // const { toggleColorMode, mode } = useColorMode();
   console.log("nav mode theme", mode);
 
@@ -41,33 +42,44 @@ export default function Navbar() {
     <AppBar
       position="static"
       ref={appBarRef}
-      sx={{ backgroundColor: "#060606", padding: "0 3rem" }}
+      sx={{
+        // backgroundColor: "#060606",
+        padding: "0 3rem",
+      }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
         {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}> */}
         {/* <Box component="img" src={Logo} alt="CraftH_LOgo" /> */}
 
-        <Image
-          src={Logo}
-          priority={true}
-          alt="CraftH_LOgo"
-          style={{
-            width: "90px",
-            height: "50px",
-          }}
-        />
-        {/* </Typography> */}
+     
 
-        <Box>
-          <Button color="inherit">
+        {/* </Typography> */}
+        <Typography sx={{ color: mode === "light" ? "#fff" : "blue" }}>
+          Logo
+        </Typography>
+
+        <Box sx={{ display: "flex" }}>
+          <Typography
+            sx={{ marginRight: "1rem" }}
+            variant="body2"
+            color="secondary"
+          >
             <Link href="/">Home</Link>
-          </Button>
-          <Button color="inherit">
+          </Typography>
+          <Typography
+            sx={{ marginRight: "1rem" }}
+            variant="body2"
+            color="secondary"
+          >
             <Link href="/about">About</Link>
-          </Button>
-          <Button color="inherit">
+          </Typography>
+          <Typography
+            sx={{ marginRight: "1rem" }}
+            variant="body2"
+            color="secondary"
+          >
             <Link href="/contact">Contact</Link>
-          </Button>
+          </Typography>
         </Box>
         <Box>
           {" "}
@@ -99,15 +111,21 @@ export default function Navbar() {
           </IconButton> */}
           <IconButton onClick={() => handleColorModeToggle()} color="inherit">
             {mode === "light" ? (
-              <Brightness4Icon />
+              <Brightness4Icon sx={{ color: "#000" }} />
             ) : (
               <Brightness7Icon />
             )}
           </IconButton>
           <Link style={{ marginRight: "1rem" }} href="/login">
-            Login
+            <Typography component="span" color="secondary">
+              Login
+            </Typography>
           </Link>
-          <Link href="/signin">Sign in</Link>
+          <Link href="/signin" color="secondary">
+            <Typography component="span" color="secondary">
+              Sign in
+            </Typography>
+          </Link>
         </Box>
       </Toolbar>
     </AppBar>
